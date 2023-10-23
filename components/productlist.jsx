@@ -8,7 +8,6 @@ export default function Productlist() {
       <h3 className='font-semibold text-center'>Latest arrivals</h3>
       <div className="container mx-auto px-4 flex ">
         <Productcard/>
-
       </div>
     </section>
   )
