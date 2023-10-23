@@ -18,14 +18,14 @@ export default function Gallery() {
       <Link
         href={"#"}
         scroll={false}
-        className="animate-btn -z-10 absolute left-[32%] top-[45%]  group-hover:text-blue-500 group-hover:-translate-x-8"
+        className="animate-btn -z-10 absolute left-[23%] top-[45%]  group-hover:text-blue-500 group-hover:-translate-x-8"
       >
         <ArrowLeftIcon className="w-5 h-5 -translate-x-9 text-neutral-500 " />
       </Link>
       <Link
         href={"#"}
         scroll={false}
-        className="animate-btn -z-10 absolute right-[32%] top-[45%] group-hover:translate-x-8 group-hover:text-blue-500  "
+        className="animate-btn -z-10 absolute right-[23%] top-[45%] group-hover:translate-x-8 group-hover:text-blue-500  "
       >
         <ArrowRightIcon className="w-5 h-5 translate-x-9 text-neutral-500 " />
       </Link>
