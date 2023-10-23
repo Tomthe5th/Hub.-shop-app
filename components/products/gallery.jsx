@@ -6,7 +6,7 @@ import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 
 export default function Gallery() {
   return (
-    <div className="relative aspect-square w-full h-full max-h-[550px] overflow-hidden group">
+    <div className="relative aspect-square w-full h-full max-h-[550px] overflow-hidden group border-2 border-neutral-300 rounded-2xl">
       <Image
         src="https://picsum.photos/400/600"
         fill

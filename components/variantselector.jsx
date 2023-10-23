@@ -3,10 +3,10 @@ import { Button } from './ui/button'
 
 export default function Variantselector() {
   return (
-   <dl className='mb-8'>
+   <dl className='mt-4'>
     <dt className='mb-4 text-sm uppercase tracking-wide'>sizes</dt>
     <dd>
-      <Button variant={'secondary'} >XL</Button>
+      <Button variant={'secondary'} className={'rounded-full text-sm  '} >XL</Button>
     </dd>
    </dl>
   )
