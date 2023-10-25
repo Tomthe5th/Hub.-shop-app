@@ -56,7 +56,7 @@ export default function Productform() {
             className="w-full border px-2 py-1"
             type="text"
             id="category"
-            {...register("category", {
+            {...register("categoryId", {
               required: true,
             })}
           >
@@ -75,7 +75,7 @@ export default function Productform() {
             className="w-full border px-2 py-1"
             type="text"
             id="size"
-            {...register("size", {
+            {...register("sizeId", {
               required: true,
             })}
           >
@@ -94,7 +94,7 @@ export default function Productform() {
             className="w-full border px-2 py-1"
             type="text"
             id="color"
-            {...register("color", {
+            {...register("colorId", {
               required: true,
             })}
           >
@@ -115,8 +115,8 @@ export default function Productform() {
             cols="30"
             rows="5"
             className="w-full border px-2 py-1"
-            {...register("desc", {
-              required: true,
+            {...register("description", {
+              required: false,
             })}
           ></textarea>
           <small>{errors.desc && "*required"}</small>

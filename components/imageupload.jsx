@@ -20,9 +20,8 @@ export default function Imageupload({ value, onChange, onRemove }) {
               className="absolute left-0 z-20 "
               variant="destructive"
               type="button"
-              onClick={() =>onRemove(url)}
+              onClick={() => onRemove(url)}
             >
-             
               <TrashIcon />
             </Button>
             <Image
