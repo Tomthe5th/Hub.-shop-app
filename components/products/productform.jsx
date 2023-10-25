@@ -1,8 +1,10 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { Controller, useForm } from "react-hook-form";
 import Imageupload from "../imageupload";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export default function Productform() {
   const {
@@ -12,8 +14,23 @@ export default function Productform() {
     formState: { errors },
   } = useForm();
 
-  function onSubmit(formData) {
-    console.log(formData);
+  const URL = `${process.env.NEXT_PUBLIC_API_URL}/products?apikey=${process.env.NEXT_PUBLIC_API_KEY}`;
+
+  const router = useRouter();
+
+  async function onSubmit(formData) {
+    try {
+      fetch(URL, {
+        method: "POST",
+        body: JSON.stringify(formData),
+        headers: {
+          "content-type": "application/json",
+        },
+      });
+      console.log(formData);
+      router.refresh();
+      router.push("/admin/products");
+    } catch (error) {console.log(error); }
   }
 
   return (
