@@ -1,23 +1,39 @@
 "use client";
 import React from "react";
 import { Button } from "../ui/button";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
+import Imageupload from "../imageupload";
 
 export default function Productform() {
   const {
     register,
     handleSubmit,
+    control ,
     formState: { errors },
   } = useForm();
 
   function onSubmit(formData) {
-    console.log( formData );
+    console.log(formData);
   }
 
   return (
     <article className="mx-auto max-w-sm mt-4">
       <h1 className="text-center">Add products</h1>
-      <form className="mt-3" onSubmit={handleSubmit( onSubmit )}>
+      <form className="mt-3" onSubmit={handleSubmit(onSubmit)}>
+        <div className="mt-2">
+          <label htmlFor="image">image</label>
+          <Controller
+            name="imageUrl"
+            control={ control }
+            render={({ field: { onChange, value } }) => (
+              <Imageupload
+                value={value}
+                onChange={(url) => onChange(url)}
+                onRemove={() => onChange("")}
+              />
+            )}
+          />
+        </div>
         <div className="mt-2">
           <label htmlFor="name">name</label>
           <input
