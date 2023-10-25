@@ -8,7 +8,7 @@ export default function Productform() {
   const {
     register,
     handleSubmit,
-    control ,
+    control,
     formState: { errors },
   } = useForm();
 
@@ -24,10 +24,10 @@ export default function Productform() {
           <label htmlFor="image">image</label>
           <Controller
             name="imageUrl"
-            control={ control }
+            control={control}
             render={({ field: { onChange, value } }) => (
               <Imageupload
-                value={value}
+                value={value ? [value] : []} //for multiple uploads
                 onChange={(url) => onChange(url)}
                 onRemove={() => onChange("")}
               />
