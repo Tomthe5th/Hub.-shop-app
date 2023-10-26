@@ -26,8 +26,8 @@ export default async function Products() {
 
           <TableHeader>
             <TableRow>
-              <TableHead className="w-[100px]">image</TableHead>
-              <TableHead>name</TableHead>
+              <TableHead>image</TableHead>
+              <TableHead className="w-[100px]">name</TableHead>
               <TableHead>size</TableHead>
               <TableHead>desc</TableHead>
               <TableHead className="text-right">price</TableHead>
@@ -37,8 +37,14 @@ export default async function Products() {
           <TableBody>
             {products.map((item) => (
               <TableRow key={item.id}>
-                <TableCell className="font-medium relative">
-                  {item.imageUrl ? <Image fill src={item?.imageUrl} /> : null}
+                <TableCell className="font-medium">
+                  {item.imageUrl ? (
+                    <Image
+                     width={150} height={150}
+                      src={item?.imageUrl}
+                      className=" aspect-square"
+                    />
+                  ) : null}
                 </TableCell>
 
                 <TableCell>{item.name}</TableCell>
