@@ -8,28 +8,45 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import getProducts from "@/actions/getproducts";
+import Image from "next/image";
 
-export default function Products() {
+export default async function Products() {
+  const products = await getProducts();
+  console.log({ products });
+
+  // const size = products.map((product) => product.size);
+  // console.log(size);
+
   return (
     <section>
       <div className="container mx-auto">
         <Table>
-          <TableCaption>A list of your recent invoices.</TableCaption>
+          <TableCaption>HUB.PRODUCTS</TableCaption>
+
           <TableHeader>
             <TableRow>
-              <TableHead className="w-[100px]">Invoice</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Method</TableHead>
-              <TableHead className="text-right">Amount</TableHead>
+              <TableHead className="w-[100px]">image</TableHead>
+              <TableHead>name</TableHead>
+              <TableHead>size</TableHead>
+              <TableHead>desc</TableHead>
+              <TableHead className="text-right">price</TableHead>
             </TableRow>
           </TableHeader>
+
           <TableBody>
-            <TableRow>
-              <TableCell className="font-medium">INV001</TableCell>
-              <TableCell>Paid</TableCell>
-              <TableCell>Credit Card</TableCell>
-              <TableCell className="text-right">$250.00</TableCell>
-            </TableRow>
+            {products.map((item) => (
+              <TableRow key={item.id}>
+                <TableCell className="font-medium relative">
+                  {item.imageUrl ? <Image fill src={item?.imageUrl} /> : null}
+                </TableCell>
+
+                <TableCell>{item.name}</TableCell>
+                <TableCell>{item?.size?.name}</TableCell>
+                <TableCell>{item.description}</TableCell>
+                <TableCell className="text-right">${item.price}</TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </div>

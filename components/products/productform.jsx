@@ -68,6 +68,22 @@ export default function Productform() {
         </div>
 
         <div className="mt-2">
+          <label htmlFor="price">price</label>
+          <input
+            className="w-full border px-2 py-1"
+            type="number"
+            id="price"
+            {...register("price", {
+              required: true,
+            })}
+          />
+
+          <small className="mt-1 text-red-600">
+            {errors.price && "*required"}
+          </small>
+        </div>
+
+        <div className="mt-2">
           <label htmlFor="category">category</label>
           <select
             className="w-full border px-2 py-1"
