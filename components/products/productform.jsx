@@ -28,8 +28,10 @@ export default function Productform() {
         },
       });
       console.log(formData);
+      
       router.refresh();
       router.push("/admin/products");
+
     } catch (error) {console.log(error); }
   }
 

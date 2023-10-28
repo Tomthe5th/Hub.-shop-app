@@ -41,7 +41,7 @@ export default async function Products() {
                   {item.imageUrl ? (
                     <Image
                      width={150} height={150}
-                      src={item?.imageUrl}
+                      src={item?.imageUrl}alt="item.name"
                       className=" aspect-square"
                     />
                   ) : null}
