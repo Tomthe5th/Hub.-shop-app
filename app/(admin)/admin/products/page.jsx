@@ -16,11 +16,22 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import Editproduct from "@/components/products/editproduct";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+import Link from "next/link";
+import Dialogbody from "./[id]/page";
 
 export default async function Products() {
   const products = await getProducts();
-  console.log(products);
+  // console.log(products);
 
   // const size = products.map((product) => product.size);
   // console.log(size);
@@ -45,7 +56,7 @@ export default async function Products() {
           </TableHeader>
 
           <TableBody>
-            {products.map((item) => (
+            {products?.map((item) => (
               <TableRow key={item.id} className={cn(" text-center py-2  ")}>
                 <TableCell className="font-medium flex items-center justify-center">
                   {item.imageUrl ? (
@@ -70,7 +81,9 @@ export default async function Products() {
                     className={cn("flex items-center justify-between gap-2 ")}
                   >
                     <Button>go to Product page</Button>
-                    <Editproduct />
+                    <Button>
+                      <Link href={`/admin/products/${item.id}`}>edit</Link>
+                    </Button>
                   </div>
 
                   <div
@@ -79,7 +92,8 @@ export default async function Products() {
                     )}
                   >
                     <div className="flex items-center gap-2">
-                      <ClockIcon className="w-4 h-4"/>..hours ago
+                      <ClockIcon className="w-4 h-4" />
+                      ..hours ago
                     </div>
 
                     <Deletebutton products={item} />

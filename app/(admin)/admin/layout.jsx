@@ -1,5 +1,5 @@
 import { Inter, Outfit } from "next/font/google";
-import "./globals.css";
+
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 
@@ -15,10 +15,8 @@ export default function RootLayout({ children, createProductmodal }) {
     <html lang="en">
       <body className={font.className}>
         <main>
-          <Navbar />
           {children}
           {createProductmodal}
-          <Footer />
         </main>
       </body>
     </html>

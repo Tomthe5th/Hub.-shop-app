@@ -12,7 +12,11 @@ export default function Productform() {
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues : {
+      name: 'test' ,
+    }
+  });
 
   const URL = `${process.env.NEXT_PUBLIC_API_URL}/products?apikey=${process.env.NEXT_PUBLIC_API_KEY}`;
 
