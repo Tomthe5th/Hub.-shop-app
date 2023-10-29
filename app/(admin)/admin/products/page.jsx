@@ -10,47 +10,60 @@ import {
 } from "@/components/ui/table";
 import getProducts from "@/actions/getproducts";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
+
+import Deletebutton from "@/components/products/deletebutton";
 
 export default async function Products() {
   const products = await getProducts();
-  console.log( products );
+  console.log(products);
 
   // const size = products.map((product) => product.size);
   // console.log(size);
 
   return (
     <section>
-      <div className="container mx-auto">
-        <Table>
+      <div className="container mx-auto max-w-6xl py-6">
+        <Table className={cn("px-1")}>
           <TableCaption>HUB.PRODUCTS</TableCaption>
 
           <TableHeader>
             <TableRow>
-              <TableHead>image</TableHead>
-              <TableHead className="w-[100px]">name</TableHead>
-              <TableHead>size</TableHead>
-              <TableHead>desc</TableHead>
-              <TableHead className="text-right">price</TableHead>
+              <TableHead className={cn(" text-center  ")}>image</TableHead>
+              <TableHead className=" text-center">name</TableHead>
+              <TableHead className={cn(" text-center  ")}>category</TableHead>
+              <TableHead className={cn(" text-center  ")}>price</TableHead>
+              <TableHead className={cn(" text-center  ")}>size</TableHead>
+              <TableHead className={cn(" text-center  ")}>color</TableHead>
+              <TableHead className="text-center">description</TableHead>
+              <TableHead className="text-center">Actions</TableHead>
             </TableRow>
           </TableHeader>
 
           <TableBody>
             {products.map((item) => (
-              <TableRow key={item.id}>
-                <TableCell className="font-medium">
+              <TableRow key={item.id} className={cn(" text-center py-2  ")}>
+                <TableCell className="font-medium flex items-center justify-center">
                   {item.imageUrl ? (
                     <Image
-                     width={150} height={150}
-                      src={item?.imageUrl}alt="item.name"
-                      className=" aspect-square"
+                      width={110}
+                      height={110}
+                      src={item?.imageUrl}
+                      alt="item.name"
+                      className=" aspect-square "
                     />
                   ) : null}
                 </TableCell>
 
                 <TableCell>{item.name}</TableCell>
-                <TableCell>{item?.size?.name}</TableCell>
+                <TableCell>{item.category?.name}</TableCell>
+                <TableCell>${item.price}</TableCell>
+                <TableCell>{item.size?.name}</TableCell>
+                <TableCell>{item.color?.name}</TableCell>
                 <TableCell>{item.description}</TableCell>
-                <TableCell className="text-right">${item.price}</TableCell>
+                <TableCell>
+                  <Deletebutton products={item} />
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
