@@ -13,7 +13,7 @@ import Image from "next/image";
 
 export default async function Products() {
   const products = await getProducts();
-  console.log({ products });
+  console.log( products );
 
   // const size = products.map((product) => product.size);
   // console.log(size);
