@@ -17,14 +17,10 @@ export default function Deletebutton({ products }) {
   }
 
   return (
-    <div className={cn("flex items-center justify-center")}>
-      <Button variant="ghost">
-        <ArrowBigUpDashIcon className="text-emarald-500 " />
-        Update
-      </Button>
+
       <Button variant="destructive" onClick={() => handleDelete(id)}>
         <Trash2Icon className="w-4 h-4" />
       </Button>
-    </div>
+
   );
 }

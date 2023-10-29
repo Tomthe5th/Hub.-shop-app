@@ -1,4 +1,12 @@
 import React from "react";
+
+import getProducts from "@/actions/getproducts";
+import Image from "next/image";
+import { cn } from "@/lib/utils";
+
+import { ArrowBigUpDashIcon } from "lucide-react";
+import Deletebutton from "@/components/products/deletebutton";
+import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -8,11 +16,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import getProducts from "@/actions/getproducts";
-import Image from "next/image";
-import { cn } from "@/lib/utils";
-
-import Deletebutton from "@/components/products/deletebutton";
 
 export default async function Products() {
   const products = await getProducts();
@@ -62,7 +65,26 @@ export default async function Products() {
                 <TableCell>{item.color?.name}</TableCell>
                 <TableCell>{item.description}</TableCell>
                 <TableCell>
-                  <Deletebutton products={item} />
+                  <div
+                    className={cn("flex items-center justify-between gap-2 ")}
+                  >
+                    <Button>go to Product page</Button>
+                    <Button>edit</Button>
+                    {/* dialog/tabs */}
+                  </div>
+
+                  <div
+                    className={cn(
+                      "mt-2 flex items-center justify-between gap-2"
+                    )}
+                  >
+                    <Button variant="ghost">
+                      <ArrowBigUpDashIcon className="text-emarald-500 " />
+                      Update
+                    </Button>
+
+                    <Deletebutton products={item} />
+                  </div>
                 </TableCell>
               </TableRow>
             ))}
