@@ -12,6 +12,9 @@
 /.next/
 /out/
 
+#babel
+@babel
+
 # production
 /build
 

@@ -4,7 +4,7 @@ import getProducts from "@/actions/getproducts";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-import { ArrowBigUpDashIcon } from "lucide-react";
+import { ArrowBigUpDashIcon, ClockIcon } from "lucide-react";
 import Deletebutton from "@/components/products/deletebutton";
 import { Button } from "@/components/ui/button";
 import {
@@ -16,6 +16,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import Editproduct from "@/components/products/editproduct";
 
 export default async function Products() {
   const products = await getProducts();
@@ -69,8 +70,7 @@ export default async function Products() {
                     className={cn("flex items-center justify-between gap-2 ")}
                   >
                     <Button>go to Product page</Button>
-                    <Button>edit</Button>
-                    {/* dialog/tabs */}
+                    <Editproduct />
                   </div>
 
                   <div
@@ -78,10 +78,9 @@ export default async function Products() {
                       "mt-2 flex items-center justify-between gap-2"
                     )}
                   >
-                    <Button variant="ghost">
-                      <ArrowBigUpDashIcon className="text-emarald-500 " />
-                      Update
-                    </Button>
+                    <div className="flex items-center gap-2">
+                      <ClockIcon className="w-4 h-4"/>..hours ago
+                    </div>
 
                     <Deletebutton products={item} />
                   </div>
