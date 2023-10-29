@@ -5,43 +5,60 @@ import { Controller, useForm } from "react-hook-form";
 import Imageupload from "../imageupload";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import updateProduct from "@/actions/updateProducts";
 
-export default function Productform() {
+export default function Productform({ initialData }) {
+  console.log(initialData);
   const {
     register,
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm({
-    defaultValues : {
-      name: 'test' ,
-    }
-  });
+  } = useForm(
+    initialData
+      ? {
+          defaultValues: initialData,
+        }
+      : null
+  );
 
   const URL = `${process.env.NEXT_PUBLIC_API_URL}/products?apikey=${process.env.NEXT_PUBLIC_API_KEY}`;
 
   const router = useRouter();
+  const [loading, setIsloading] = useState(false);
 
   async function onSubmit(formData) {
+    //
     try {
-      fetch(URL, {
-        method: "POST",
-        body: JSON.stringify(formData),
-        headers: {
-          "content-type": "application/json",
-        },
-      });
-      console.log(formData);
-      
-      router.refresh();
-      router.push("/admin/products");
+      setIsloading(true);
+      if (initialData) {
+        //update mode
+        await updateProduct(initialData.id, formData);
+        console.log(formData);
+      } else {
+        //create mode
+        await fetch(URL, {
+          method: "POST",
+          body: JSON.stringify(formData),
+          headers: {
+            "content-type": "application/json",
+          },
+        });
+        console.log(formData);
 
-    } catch (error) {console.log(error); }
+        router.refresh();
+        router.push("/admin/products");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsloading(false);
+    }
   }
 
   return (
     <article className="mx-auto max-w-sm mt-4">
-      <h1 className="text-center">Add products</h1>
+      <h1 className="text-center"> {initialData ? "Update" : "Add"} product</h1>
       <form className="mt-3" onSubmit={handleSubmit(onSubmit)}>
         <div className="mt-2">
           <label htmlFor="image">image</label>
@@ -100,8 +117,9 @@ export default function Productform() {
             })}
           >
             <option value="">Select Category</option>
-            <option value="1">shoes</option>
-            <option value="2">bags</option>
+            <option value="1">Bags</option>
+            <option value="2">Shoes</option>
+            <option value="3">Shirts</option>
           </select>
           <small className="mt-1 text-red-600">
             {errors.category && "*required"}
@@ -140,6 +158,7 @@ export default function Productform() {
             <option value="">Select Color</option>
             <option value="1">red</option>
             <option value="2">white</option>
+            <option value="3">Black</option>
           </select>
           <small className="mt-1 text-red-600">
             {errors.color && "*required"}

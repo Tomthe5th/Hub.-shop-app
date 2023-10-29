@@ -4,7 +4,7 @@ import getProducts from "@/actions/getproducts";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-import { ArrowBigUpDashIcon, ClockIcon } from "lucide-react";
+import {  ClockIcon } from "lucide-react";
 import Deletebutton from "@/components/products/deletebutton";
 import { Button } from "@/components/ui/button";
 import {
@@ -16,22 +16,14 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
 
 import Link from "next/link";
-import Dialogbody from "./[id]/page";
+
 
 export default async function Products() {
   const products = await getProducts();
-  // console.log(products);
+
 
   // const size = products.map((product) => product.size);
   // console.log(size);

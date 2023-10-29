@@ -9,7 +9,7 @@ async function updateProduct(id, data) {
     },
   });
 
-  return res;
+  return res.json();
 }
 
 export default updateProduct;
