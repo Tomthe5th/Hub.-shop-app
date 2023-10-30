@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import updateProduct from "@/actions/updateProducts";
 
 export default function Productform({ initialData }) {
-  console.log(initialData);
+  // console.log(initialData);
   const {
     register,
     handleSubmit,
@@ -45,13 +45,12 @@ export default function Productform({ initialData }) {
           },
         });
         console.log(formData);
-
-        router.refresh();
-        router.push("/admin/products");
       }
     } catch (error) {
       console.log(error);
     } finally {
+      router.refresh();
+      router.push("/admin/products");
       setIsloading(false);
     }
   }
