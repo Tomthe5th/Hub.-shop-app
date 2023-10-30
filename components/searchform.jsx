@@ -21,8 +21,8 @@ export default function SearchForm() {
         name="keyword"
         key={searchParams?.get("keyword")}
         defaultValue={searchParams?.get("keyword") || ""}
-        placeholder="Search for products..."
-        className="border px-3 py-1 mt-1 rounded-md outline-none w-96 max-w-full focus:ring ring-blue-200 ring-offset-1"
+        placeholder="Search products"
+        className="border px-3 py-1 mt-1 rounded-md outline-none w-96 max-w-full focus:ring ring-neutral-300 ring-offset-1"
       />
     </form>
   );
