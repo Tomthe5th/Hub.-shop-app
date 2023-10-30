@@ -1,5 +1,5 @@
 "use client";
-import Cartaction from "@/cartaction";
+import Cartaction from "@/components/cartaction";
 
 import Link from "next/link";
 import React from "react";
