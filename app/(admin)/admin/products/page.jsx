@@ -4,7 +4,7 @@ import getProducts from "@/actions/getproducts";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-import {  ClockIcon } from "lucide-react";
+import { ClockIcon, FileEditIcon, PlusCircleIcon } from "lucide-react";
 import Deletebutton from "@/components/products/deletebutton";
 import { Button } from "@/components/ui/button";
 import {
@@ -17,13 +17,11 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-
 import Link from "next/link";
-
+import { format, formatDistance } from "date-fns";
 
 export default async function Products() {
   const products = await getProducts();
-
 
   // const size = products.map((product) => product.size);
   // console.log(size);
@@ -31,6 +29,13 @@ export default async function Products() {
   return (
     <section>
       <div className="container mx-auto max-w-6xl py-6">
+        <article>
+          <Button>
+            <Link href={"/admin/products/create"} className="flex items-center">
+              <PlusCircleIcon className="mr-2 w-4 h-4" /> Add products
+            </Link>
+          </Button>
+        </article>
         <Table className={cn("px-1")}>
           <TableCaption>HUB.PRODUCTS</TableCaption>
 
@@ -50,15 +55,17 @@ export default async function Products() {
           <TableBody>
             {products?.map((item) => (
               <TableRow key={item.id} className={cn(" text-center py-2  ")}>
-                <TableCell className="font-medium flex items-center justify-center">
+                <TableCell>
                   {item.imageUrl ? (
-                    <Image
-                      width={110}
-                      height={110}
-                      src={item?.imageUrl}
-                      alt="item.name"
-                      className=" aspect-square "
-                    />
+                    <figure className=" flex items-center justify-center relative w-full aspect-[2.5/3]  rounded shadow">
+                      <Image
+                        fill
+                        priority
+                        src={item?.imageUrl}
+                        alt="item.name"
+                        className=" object-cover "
+                      />
+                    </figure>
                   ) : null}
                 </TableCell>
 
@@ -74,7 +81,9 @@ export default async function Products() {
                   >
                     <Button>go to Product page</Button>
                     <Button>
-                      <Link href={`/admin/products/${item.id}`}>edit</Link>
+                      <Link href={`/admin/products/${item.id}`}>
+                        <FileEditIcon className="w-4 h-4" />{" "}
+                      </Link>
                     </Button>
                   </div>
 
@@ -85,7 +94,12 @@ export default async function Products() {
                   >
                     <div className="flex items-center gap-2">
                       <ClockIcon className="w-4 h-4" />
-                      ..hours ago
+                      {/* {format(new Date(item.created_at), "dd MM yyyy")}  */}
+                      {formatDistance(
+                        new Date(item.created_at),
+                        new Date()
+                      )}{" "}
+                      ago
                     </div>
 
                     <Deletebutton products={item} />
