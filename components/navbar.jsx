@@ -1,24 +1,25 @@
+"use client";
 import Cartaction from "@/cartaction";
 
 import Link from "next/link";
 import React from "react";
 import Navlinks from "./navlinks";
 import getCategories from "@/actions/getCategories";
+import Searchform from "./Searchform";
 
 export default async function Navbar() {
-  // const categories = await getCategories();
-  const categories = [];
-  console.log({ categories });
+  const categories = await getCategories();
 
   return (
     <header className="border-b">
-      <div className="container mx-auto px-4 ; lg:px-8 py-2 flex items-center justify-between ">
+      <div className="container mx-auto  flex items-center justify-between px-4  py-2">
         <div className="flex items-center">
           <Link href={"/"} className="text-xl font-bold ">
             Hub.
           </Link>
           <Navlinks data={categories} />
         </div>
+        <Searchform />
         <Cartaction />
       </div>
     </header>

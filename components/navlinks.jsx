@@ -10,12 +10,10 @@ export default function Navlinks({ data }) {
 
   const links = data.map((item) => ({
     id: item.id,
-    href: `/categories/${item.slug}`,
-    label: item.name,
-    isActive: pathname === `/categories/${item.slug}`,
+    href: `/products?categories=${item.slug}`,
+    name: item.name,
+    isActive: pathname === `/products?categories=${item.slug}`,
   }));
-
-  // console.log({ links });
 
   return (
     <nav className="flex items-center gap-4 ; lg:gap-6 mx-6 ">
@@ -28,7 +26,7 @@ export default function Navlinks({ data }) {
             link.isActive ? "text-black" : "text-slate-500 "
           )}
         >
-          {link.label}
+          {link.name}
         </Link>
       ))}
     </nav>
