@@ -2,17 +2,20 @@
 import { cn } from "@/lib/utils";
 import { Key } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import React, { useState } from "react";
 
 export default function Navlinks({ data }) {
   const pathname = usePathname();
+  console.log(data);
+  const param  = useParams() ; console.log(param);
+
 
   const links = data.map((item) => ({
     id: item.id,
     href: `/products?categories=${item.slug}`,
     name: item.name,
-    isActive: pathname === `/products?categories=${item.slug}`,
+    isActive:`${pathname}?categories=${item.slug}` ===`/products?categories=${item.slug}`,
   }));
 
   return (
@@ -23,7 +26,7 @@ export default function Navlinks({ data }) {
           href={link.href}
           className={cn(
             "test-sm font-medium hover:text-black hover:underline transition-color",
-            link.isActive ? "text-black" : "text-slate-500 "
+            link.isActive ? "text-black underline-offset-1" : "text-slate-500 "
           )}
         >
           {link.name}
