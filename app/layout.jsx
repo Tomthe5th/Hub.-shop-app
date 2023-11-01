@@ -10,6 +10,7 @@ export const metadata = {
   description: "clothing-store",
 };
 
+
 export default function RootLayout({ children, createProductmodal }) {
   return (
     <html lang="en">

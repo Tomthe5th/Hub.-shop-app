@@ -18,8 +18,8 @@ e.stopPropagation()
 }
 
   return (
-    <article className="max-w-lg " onClick={handleClick}>
-      <div className="aspect-square rounded-xl relative group">
+    <article className="max-w-2xl " onClick={handleClick}>
+      <div className="aspect-square  rounded-xl relative group">
         <Image
           src="https://picsum.photos/200"
           alt="product label"

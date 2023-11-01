@@ -8,7 +8,8 @@ import getCategories from "@/actions/getCategories";
 import Searchform from "./Searchform";
 
 export default async function Navbar() {
-  const categories = await getCategories();
+  //const categories = await getCategories();
+
 
   return (
     <header className="border-b">
@@ -17,9 +18,11 @@ export default async function Navbar() {
           <Link href={"/"} className="text-xl font-bold ">
             Hub.
           </Link>
-          <Navlinks data={categories} />
+          {/* <Navlinks data={categories} /> */}
         </div>
+
         <Searchform />
+
         <Cartaction />
       </div>
     </header>
