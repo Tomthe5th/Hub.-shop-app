@@ -9,32 +9,34 @@ import React from "react";
 export default function Productpage() {
   // const params = useParams(); console.log(params);
   const { id } = useParams();
-  console.log(id);
+console.log(id);
   const {
     data: product,
     isPending,
     isError,
     isFetched,
   } = useQuery({
-    queryKey: [`products/${id}`],
+    queryKey: [`product`],
     queryFn: () => getProduct(id),
   });
-  const { name, category, price, imageUrl } = product;
-  if (!product && isFetched) notFound();
+  
 
+  //if (!product && isFetched) notFound();
   if (isPending) return <p>Loading...</p>;
   //if (isError) return <p>{error.message}</p>;
 
+ const { name, imageUrl, price } = product;
+console.log(product);
   return (
     <section>
       <div className="container mx-auto px-4 ; lg:px-0">
         <div className="flex rounded-lg border-neutral-200 p-8 gap-8">
           <div className="w-3/4 h-full basics-full ; lg:basics-4/6 ">
-            <Gallery imageUrl ={imageUrl} />
+            <Gallery imageUrl={imageUrl} />
           </div>
 
           <div className="flex items-center justify-center w-2/6 ">
-            <Productdescription product ={product} />
+            <Productdescription product={product} />
           </div>
         </div>
       </div>

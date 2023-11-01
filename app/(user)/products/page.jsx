@@ -3,6 +3,7 @@
 import getCategories from "@/actions/getCategories";
 import Productlist from "@/components/productlist";
 import { useQuery } from "@tanstack/react-query";
+import Error from "next/error";
 import Link from "next/link";
 
 export default function Allproductspage() {
@@ -10,13 +11,14 @@ export default function Allproductspage() {
     data: categories,
     isPending,
     isError,
+    error
   } = useQuery({
     queryKey: ["categories"],
     queryFn: getCategories,
   });
 
   if (isPending) return <p>Loading...</p>;
-  //if (isError) return <p>{error.message}</p>;
+  if (isError) return <p>{error.message}</p>;
 
   return (
     <section>

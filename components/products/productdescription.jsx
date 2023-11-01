@@ -4,7 +4,7 @@ import Addtocart from "../cart/addtocart";
 import Prose from "../prose";
 
 export default function Productdescription({ product }) {
-  const { id, name, category, price, imageUrl } = product;
+  const { id, name, category, price, imageUrl, description } = product;
 
   return (
     <article className="w-full">
@@ -16,7 +16,7 @@ export default function Productdescription({ product }) {
       </div>
 
       <Variantselector />
-      <Prose html={"<h1>Product description <br/> <b>bold text</b></h1>"} />
+      <Prose html={`<h1>${description}</h1>`} />
       <Addtocart />
     </article>
   );

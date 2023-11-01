@@ -1,15 +1,15 @@
-'use client'
+"use client";
 import Image from "next/image";
 import React from "react";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 
-export default function Gallery() {
+export default function Gallery({ imageUrl }) {
   return (
     <div className="relative aspect-square w-full h-full max-h-[550px] overflow-hidden group border-2 border-neutral-300 rounded-2xl">
       <Image
-        src="https://picsum.photos/400/600"
+        src={imageUrl}
         fill
         className="object-contain w-full h-full "
         priority={true}

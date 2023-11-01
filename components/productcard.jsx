@@ -22,10 +22,10 @@ export default function Productcard({ products }) {
 
   return (
     <article className="w-64 " onClick={handleClick}>
-      <div className="aspect-square  rounded-xl relative group">
+      <div className="aspect-square w-full  rounded-xl relative group">
         <Image
           fill
-          src="https://picsum.photos/200"
+          src={imageUrl}
           alt="product label"
           className="object-cover aspect-square rounded-md"
         />

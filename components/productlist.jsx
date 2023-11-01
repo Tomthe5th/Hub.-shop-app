@@ -10,6 +10,7 @@ export default function Productlist() {
     data: products,
     isPending,
     isError,
+    error
   } = useQuery({
     queryKey: ["products"],
     queryFn: getProducts,
@@ -21,7 +22,7 @@ export default function Productlist() {
     <section>
       <div className="container mx-auto lg:px-8">
         <h3 className="font-semibold text-center">Latest arrivals</h3>
-        <div className=" px-4 flex gap-4 items-center justify-center ">
+        <div className=" px-4 flex flex-wrap gap-4 items-center justify-center ">
           <>
             {products.map((item) => (
               <Productcard key={item.id} products={item} />

@@ -8,16 +8,20 @@ import getCategories from "@/actions/getCategories";
 import Searchform from "./Searchform";
 import { useQuery } from "@tanstack/react-query";
 
-export default  function Navbar() {
+export default function Navbar() {
   //const categories = await getCategories();
-  const {data:categories , isPending ,isError } = useQuery({
+  const {
+    data: categories,
+    isPending,
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
     queryKey: ["categories"],
     queryFn: getCategories,
   });
-
-  if(isPending) return <p>Loading...</p>
-  //if (isError) return <p>{error.message}</p>
-
+  if (isPending) return <p>Loading ...</p>;
+  if (isError) return <p>{error.message}</p>;
   return (
     <header className="border-b">
       <div className="container mx-auto  flex items-center justify-between px-4  py-2">
@@ -25,7 +29,6 @@ export default  function Navbar() {
           <Link href={"/"} className="text-xl font-bold ">
             Hub.
           </Link>
-          {/* {isPending?(): isError ?  } */}
 
           <Navlinks data={categories} />
         </div>
