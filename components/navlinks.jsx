@@ -2,20 +2,22 @@
 import { cn } from "@/lib/utils";
 import { Key } from "lucide-react";
 import Link from "next/link";
-import { useParams, usePathname } from "next/navigation";
+import { useParams, usePathname, useSearchParams } from "next/navigation";
 import React, { useState } from "react";
 
 export default function Navlinks({ data }) {
+  const searchParams = useSearchParams();
   const pathname = usePathname();
-  console.log(data);
-  const param  = useParams() ; console.log(param);
 
+  const firstItem = searchParams.get("categories");
 
   const links = data.map((item) => ({
     id: item.id,
     href: `/products?categories=${item.slug}`,
     name: item.name,
-    isActive:`${pathname}?categories=${item.slug}` ===`/products?categories=${item.slug}`,
+    isActive:
+      `${pathname}?categories=${firstItem}` ===
+      `/products?categories=${item.slug}`,
   }));
 
   return (
