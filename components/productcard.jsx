@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import { notFound, useRouter } from "next/navigation";
 
 export default function Productcard({ products }) {
-  console.log(products);
+  //console.log(products);
   const router = useRouter();
   function stopPropagation(e) {
     e.stopPropagation();

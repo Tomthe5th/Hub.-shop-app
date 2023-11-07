@@ -17,7 +17,7 @@ export default function Productdescription({ product }) {
 
       <Variantselector />
       <Prose html={`<h1>${description}</h1>`} />
-      <Addtocart />
+      <Addtocart product={product} />
     </article>
   );
 }

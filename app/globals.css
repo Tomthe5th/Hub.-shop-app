@@ -95,8 +95,8 @@ main {
 }
 
 .btn {
-  @apply flex w-full items-center justify-center rounded-full tracking-wide
+  @apply flex w-full items-center justify-center rounded-full tracking-wide;
 }
-.disabledBtnClasses{
-  @apply cursor-not-allowed opacity-60 hover:opacity-60
+.disabledBtnClasses {
+  @apply opacity-60 hover:opacity-60  cursor-not-allowed;
 }
