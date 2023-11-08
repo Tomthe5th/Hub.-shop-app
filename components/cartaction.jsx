@@ -16,11 +16,21 @@ import { useCartContext } from "./contexts/cartContext";
 import Image from "next/image";
 
 export default function Cartaction() {
-  const { totalQty, cartItems, onAdd } = useCartContext();
+  const { totalPrice, totalQty, cartItems, onAdd, onRemove } = useCartContext();
   console.log(cartItems);
   const isMounted = useIsMounted();
 
   if (!isMounted) return null;
+
+  async function handleCheckout() {
+    const res = await fetch("api/stripe", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(cartItems),
+    });
+    const data = res.json();
+    //stripe checkout code
+  }
 
   return (
     <div className="flex items-center gap-4">
@@ -34,13 +44,14 @@ export default function Cartaction() {
         <SheetContent>
           <SheetHeader>
             <SheetTitle>my cart</SheetTitle>
+
             <SheetDescription>
               {cartItems.length < 1 ? (
                 <div>
                   <ShoppingBag className="w-4 h-4" /> you have no items in cart
                 </div>
               ) : (
-                <ul>
+                <ul className="flex flex-col items-center justify-between relative h-[90vh] ">
                   {cartItems.map((item) => (
                     <li
                       key={item.id}
@@ -61,10 +72,15 @@ export default function Cartaction() {
                       </div>
 
                       <div className="flex justify-between items-center gap-2 rounded-md bg-neutral-100 ">
-                        <button className="bg-neutral-300 rounded-l-md px-2 py-1">
-                          <MinusIcon className="w-4 h-4" />{" "}
+                        <button
+                          onClick={() => onRemove(item)}
+                          className="bg-neutral-300 rounded-l-md px-2 py-1"
+                        >
+                          <MinusIcon className="w-4 h-4" />
                         </button>
+
                         <p className="w-8 text-center">{item.quantity}</p>
+
                         <button
                           onClick={() => onAdd(item, 1)}
                           className="bg-neutral-300 rounded-r-md px-2 py-1"
@@ -74,6 +90,16 @@ export default function Cartaction() {
                       </div>
                     </li>
                   ))}
+
+                  <div className="text-neutral-800 absolute bottom-1 py-2 flex flex-col items-center w-full border-t border-t-neutral-300">
+                    <p className="text-xl font-semibold ">
+                      Total price:{" "}
+                      <span className="text-lg ">{totalPrice}$</span>{" "}
+                    </p>
+                    <Button onCick={handleCheckout}>
+                      proceed to checkout!
+                    </Button>
+                  </div>
                 </ul>
               )}
             </SheetDescription>
@@ -83,3 +109,4 @@ export default function Cartaction() {
     </div>
   );
 }
+// 1-00-46s

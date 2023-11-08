@@ -30,8 +30,29 @@ export function CartContextProvider({ children }) {
       setCartItems([{ ...product, quantity: qty }]);
     }
   }
+
+  function onRemove(product) {
+    const productInCart = cartItems.find((item) => item.id === product.id);
+    if (!product) return;
+
+    setTotalPrice((prevPrice) => prevPrice - product.price);
+    setTotalQty((prevQty) => prevQty - 1);
+
+    if (productInCart.quantity === 1) {
+      setCartItems(cartItems.filter((item) => item.id !== product.id));
+    } else {
+      const newCartItems = cartItems.map((item) =>
+        item.id === productInCart.id
+          ? { ...productInCart, quantity: productInCart.quantity - 1 }
+          : item
+      );
+      setCartItems(newCartItems);
+    }
+  }
   return (
-    <CartContext.Provider value={{ cartItems, totalPrice, totalQty, onAdd }}>
+    <CartContext.Provider
+      value={{ cartItems, totalPrice, totalQty, onAdd, onRemove }}
+    >
       {children}
     </CartContext.Provider>
   );
